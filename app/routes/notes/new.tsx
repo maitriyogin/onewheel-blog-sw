@@ -4,10 +4,9 @@ import { Form, useActionData } from "@remix-run/react";
 import * as React from "react";
 
 import { createNote } from "~/models/note.server";
-import { requireAdminUser, requireUserId } from "~/session.server";
+import { requireUserId } from "~/session.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
-  await requireAdminUser(request);
   return json({});
 };
 export async function action({ request }: ActionArgs) {

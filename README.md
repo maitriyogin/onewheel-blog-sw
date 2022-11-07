@@ -86,8 +86,8 @@ Prior to your first deployment, you'll need to do a few things:
 - Create two apps on Fly, one for staging and one for production:
 
   ```sh
-  fly apps create onewheel-blog-3694
-  fly apps create onewheel-blog-3694-staging
+  fly apps create onewheel-blog-sw
+  fly apps create onewheel-blog-sw-staging
   ```
 
   > **Note:** Make sure this name matches the `app` set in your `fly.toml` file. Otherwise, you will not be able to deploy.
@@ -120,7 +120,7 @@ Prior to your first deployment, you'll need to do a few things:
 
   ```sh
   fly volumes create data --size 1 --app onewheel-blog-sw
-  fly volumes create data --size 1 --app onewheel-blog-3694-sw
+  fly volumes create data --size 1 --app onewheel-blog-sw-staging
   ```
 
 Now that everything is set up you can commit and push your changes to your repo. Every commit to your `main` branch will trigger a deployment to your production environment, and every commit to your `dev` branch will trigger a deployment to your staging environment.

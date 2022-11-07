@@ -116,7 +116,7 @@ jobs:
           wait-on: "http://localhost:8811"
         env:
           PORT: "8811"
-          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL}}
+          ADMIN_EMAIL: "stephen.white@mac.com"
           SESSION_SECRET: ${{ secrets.SESSION_SECRET}}
 
   build:

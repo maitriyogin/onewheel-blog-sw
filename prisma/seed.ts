@@ -59,6 +59,23 @@ async function seed() {
       create: post,
     });
   }
+
+  // comments
+  const comments = [
+    {
+      id: "1",
+      comment: "This post is just the best!",
+      slug: "trail-riding-with-onewheel",
+      userId: user.id,
+    },
+  ];
+  for (const comment of comments) {
+    await prisma.comment.upsert({
+      where: { id: comment.id },
+      update: comment,
+      create: comment,
+    });
+  }
   console.log(`Database has been seeded. 🌱`);
 }
 

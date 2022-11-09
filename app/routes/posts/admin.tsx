@@ -13,7 +13,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const posts = await getPostListings();
   return json<LoaderData>({ posts });
 };
-export default function Adminroute() {
+export default function AdminRoute() {
   const { posts } = useLoaderData() as LoaderData;
   return (
     <div className="mx-auto max-w-4xl">

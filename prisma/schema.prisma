@@ -16,6 +16,7 @@ model User {
 
   password Password?
   notes    Note[]
+  comments Comment[]
 }
 
 model Password {
@@ -44,5 +45,19 @@ model Post {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  comments Comment[]
+}
 
+model Comment {
+  id    String @id @default(cuid())
+  comment String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String
+
+  post Post @relation(fields: [slug], references: [slug], onDelete: Cascade, onUpdate: Cascade)
+  slug String
 }

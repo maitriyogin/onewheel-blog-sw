@@ -23,7 +23,25 @@ async function seed() {
       },
     },
   });
-
+  const user1 = await prisma.user.upsert({
+    where: { email: "gumball@fantasy.com" },
+    update: {
+      email: "gumball@fantasy.com",
+      password: {
+        update: {
+          hash: await bcrypt.hash("darwin2000", 10),
+        },
+      },
+    },
+    create: {
+      email: "gumball@fantasy.com",
+      password: {
+        create: {
+          hash: await bcrypt.hash("darwin2000", 10),
+        },
+      },
+    },
+  });
   await prisma.note.create({
     data: {
       title: "My first note",
@@ -67,6 +85,18 @@ async function seed() {
       comment: "This post is just the best!",
       slug: "trail-riding-with-onewheel",
       userId: user.id,
+    },
+    {
+      id: "2",
+      comment: "This blog was amazing!",
+      slug: "my-first-post",
+      userId: user.id,
+    },
+    {
+      id: "3",
+      comment: "Fantasy blog",
+      slug: "my-first-post",
+      userId: user1.id,
     },
   ];
   for (const comment of comments) {

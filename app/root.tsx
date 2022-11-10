@@ -30,7 +30,7 @@ type LoaderData = {
 };
 
 export async function loader({ request }: LoaderArgs) {
-  console.log(ENV);
+  // console.log(ENV);
   return json<LoaderData>({
     user: await getUser(request),
     ENV: getEnv(),

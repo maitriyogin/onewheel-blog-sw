@@ -21,7 +21,8 @@
     "validate": "run-p \"test -- --run\" lint typecheck test:e2e:run",
     "db:push": "npx prisma db push",
     "db:migrate": "npx prisma migrate dev",
-    "db:seed": "npx prisma db seed"
+    "db:seed": "npx prisma db seed",
+    "db:reset": "npx prisma migrate reset"
   },
   "prettier": {},
   "eslintIgnore": [

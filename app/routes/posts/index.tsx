@@ -14,23 +14,7 @@ export default function PostsRoute() {
   const adminUser = useOptionalAdminUser();
   return (
     <main>
-      <h1>Posts</h1>
-      {adminUser ? (
-        <Link to="admin" className="text-red-600 underline">
-          Admin
-        </Link>
-      ) : null}
-      {posts.map((p) => (
-        <li key={p.slug}>
-          <Link
-            to={p.slug}
-            prefetch="intent" // this prefetch the page and that data when hovering over that link
-            className="text-blue-600 underline"
-          >
-            {p.title}
-          </Link>
-        </li>
-      ))}
+      <h1>Please select a post</h1>
     </main>
   );
 }

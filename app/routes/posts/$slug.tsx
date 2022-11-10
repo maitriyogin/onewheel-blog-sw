@@ -1,4 +1,10 @@
-import { Link, Outlet, useLoaderData } from "@remix-run/react";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLoaderData,
+  useMatches,
+} from "@remix-run/react";
 import { LoaderFunction } from "@remix-run/server-runtime";
 import { json } from "@remix-run/node";
 import { getPost } from "~/models/post.server";
@@ -20,20 +26,42 @@ export const loader: LoaderFunction = async ({ params }) => {
   const html = marked(post?.markdown);
   return json<LoaderData>({ slug, title: post?.title, html });
 };
+
+const useIsActive = (routeItem: string) => {
+  const ms = useMatches();
+  return {
+    isActive: ms ? ms[ms.length - 1].id.includes(routeItem) : false,
+    previousRoute: ms[ms.length - 2 >= 1 ? ms.length - 2 : 1],
+  };
+};
 export default function PostRoute() {
   const { title, html, slug } = useLoaderData() as LoaderData;
+  const { isActive, previousRoute } = useIsActive("comments");
   return (
-    <main className="mx-auto max-w-4xl">
-      <h1 className="test-3xl my-6 border-b-2 text-center">{title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-      <Link
-        to={`comments`}
-        prefetch="intent" // this prefetch the page and that data when hovering over that link
-        className="text-blue-600 underline"
-      >
-        Comments
-      </Link>
-      <Outlet />
-    </main>
+    <div className="flex-col content-between space-y-4">
+      <div className="flex-col ">
+        <h3 className="text-2xl font-bold">
+          {title}
+
+          <Link to={"edit"} className="ml-4 text-blue-600 ">
+            Edit Post
+          </Link>
+        </h3>
+        <hr className="my-4" />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+      <div className="flex-col rounded-sm bg-slate-50">
+        {isActive ? (
+          <Link to={previousRoute} className="text-blue-600 ">
+            Hide Comments
+          </Link>
+        ) : (
+          <Link to="comments" className="text-blue-600 ">
+            Show Comments
+          </Link>
+        )}
+        <Outlet />
+      </div>
+    </div>
   );
 }

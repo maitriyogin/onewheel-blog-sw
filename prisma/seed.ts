@@ -68,6 +68,7 @@ async function seed() {
       slug: "trail-riding-with-onewheel",
       title: "Trail Riding with Onewheel",
       markdown: "##### Trail Riding",
+      stars: 5,
     },
   ];
   for (const post of posts) {

@@ -176,6 +176,7 @@ export default function NewPostRoute() {
   );
 }
 
+
 // more user defined
 export function CatchBoundary() {
   const caught = useCatch();

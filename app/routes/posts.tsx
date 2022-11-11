@@ -57,6 +57,7 @@ export default function PostsRoute() {
                       >
                         {p.title}
                       </Link>
+                      {p.stars ?? 0}
                     </li>
                     <hr />
                   </>

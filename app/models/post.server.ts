@@ -13,6 +13,7 @@ export async function getPostListings() {
     select: {
       slug: true,
       title: true,
+      stars: true,
     },
   });
 }

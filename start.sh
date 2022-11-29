@@ -7,4 +7,7 @@
 
 set -ex
 npx prisma migrate deploy
+# npx prisma db push --accept-data-loss
+# npx prisma db push --force-reset && npx prisma db seed
+npx prisma db seed
 npm run start
